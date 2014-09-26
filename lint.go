@@ -1192,7 +1192,7 @@ func (f *file) lintSwitchCases() {
 					if !didWork && cl.Body != nil || !didWork && idx == len(sw.Body.List)-1 { // special case the last clause in a switch
 						f.errorf(cl, 0.8, category("case"), `'%v' statement does no work`, re.ReplaceAllString(f.render(cl), ""))
 					} else if !didWork {
-						f.errorf(cl, 0.9, category("case"), ` ''%v' suggest an explicit break statement`, re.ReplaceAllString(f.render(cl), ""))
+						f.errorf(cl, 0.9, category("case"), `'%v' suggest an explicit break statement`, re.ReplaceAllString(f.render(cl), ""))
 					}
 				}
 			}
