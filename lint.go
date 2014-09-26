@@ -1175,7 +1175,7 @@ func (f *file) lintErrorReturn() {
 	})
 }
 
-// lintSwitchCases examines case statements in a switch to flag suspicious (lack of) fallthrough
+// lintSwitchCases examines case statements in a switch to flag an implicit break
 // and if a statement does not appear to do anything.
 func (f *file) lintSwitchCases() {
 
@@ -1192,7 +1192,7 @@ func (f *file) lintSwitchCases() {
 					if !didWork && cl.Body != nil || !didWork && idx == len(sw.Body.List)-1 { // special case the last clause in a switch
 						f.errorf(cl, 0.8, category("case"), `'%v' statement does no work`, re.ReplaceAllString(f.render(cl), ""))
 					} else if !didWork {
-						f.errorf(cl, 0.9, category("case"), ` ''%v' are you missing a fallthrough?`, re.ReplaceAllString(f.render(cl), ""))
+						f.errorf(cl, 0.9, category("case"), ` ''%v' suggest an explicit break statement`, re.ReplaceAllString(f.render(cl), ""))
 					}
 				}
 			}

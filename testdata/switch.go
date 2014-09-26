@@ -10,8 +10,8 @@ func bad() {
 
 	for {
 		switch 1 {
-		case 0: // MATCH /are you missing a fallthrough?/
-		case 1, 2: // MATCH /are you missing a fallthrough?/
+		case 0: // MATCH /suggest an explicit break statement/
+		case 1, 2: // MATCH /suggest an explicit break statement/
 		case 9: // MATCH /statement does no work/
 			{
 			}
@@ -34,7 +34,7 @@ func bad() {
 	}
 
 	switch 1 {
-	default: // MATCH /are you missing a fallthrough?/
+	default: // MATCH /suggest an explicit break statement/
 	case 1: // MATCH /statement does no work/
 	}
 
@@ -46,14 +46,14 @@ func nested() {
 
 	case 1:
 		switch 'a' {
-		case 'a': // MATCH /are you missing a fallthrough?/
+		case 'a': // MATCH /suggest an explicit break statement/
 		default:
 			b = 9
 		}
 
 	case 2: // MATCH /statement does no work/
 		switch 'a' {
-		case 'a': // MATCH /are you missing a fallthrough?/
+		case 'a': // MATCH /suggest an explicit break statement/
 		default: // MATCH /statement does no work/
 		}
 
